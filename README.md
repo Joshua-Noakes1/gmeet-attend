@@ -1,4 +1,4 @@
-# gmeet-autojoiner
+# gmeet-attend
 Join Google meet meetings automatically while you sleep peacefully
 
 # Prerequisite:
