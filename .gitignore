@@ -117,3 +117,4 @@ dist
 
 # .env alternitive 
 appconfig.json
+obs.json

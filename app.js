@@ -13,13 +13,14 @@ const VERBOSE = false // Change this to true to get extra messages in the consol
 const CHECKTIME = 10000 // This variable determines how often will the code check for meeting. Value in miliseconds
 
 var appconfig = rw.readJSON('appconfig.json');
+var obs_config = rw.readJSON('obs.json');
 
-if (appconfig.set) {
+if (appconfig.set == true) {
 	email = appconfig.email
 	password = "Your password is saved but it's safer to not show you!"
 } else {
-	email = "Enter your email here",
-		password = "Enter your password in the .env file"
+	email = "",
+		password = ""
 }
 
 var meetings = rw.readJSON('meetings.json');
@@ -51,6 +52,7 @@ app.post('/submitMeet', (req, res) => {
 	meetings[uid].name = req.body.meetName
 	meetings[uid].time = Date.parse(req.body.meetTime)
 	meetings[uid].url = req.body.meetUrl
+	meetings[uid].obs = req.body.obs
 	res.redirect("/")
 });
 
@@ -68,13 +70,14 @@ app.post('/settings', (req, res) => {
 	});
 	appconfig = rw.readJSON('appconfig.json');
 	config['email'] = req.body.email
+	config['password'] = "Your password is saved but it's safer to not show you!"
 	res.redirect('/')
 });
 
 const checkForMeeting = () => {
 	for (meeting in meetings) {
 		if (Date.now() > meetings[meeting].time) {
-			gmeet.join(meetings[meeting].url, config['email'], appconfig.password, {
+			gmeet.join(meetings[meeting].url, config['email'], appconfig.password, meetings[meeting].obs, obs_config, meetings[meeting].name, {
 				headless: HEADLESS,
 				verbose: VERBOSE
 			})
