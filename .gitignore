@@ -118,3 +118,4 @@ dist
 # .env alternitive 
 appconfig.json
 obs.json
+package.json.dev
