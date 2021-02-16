@@ -1,5 +1,5 @@
 # gmeet-attend
-Join Google meet meetings automatically record them with obs while you sleep
+Join Google meet meetings automatically and record them with obs while you sleep
 
 ## About:
 gmeet-attend is a fork of `https://github.com/Rex1911/gmeet-autojoiner` a tool used attend google meet meeting automatically.   
