@@ -20,7 +20,7 @@ if (appconfig.set == true) {
 	password = "Your password is saved but it's safer to not show you!"
 } else {
 	email = "",
-		password = ""
+	password = ""
 }
 
 var meetings = rw.readJSON('meetings.json');
@@ -45,6 +45,8 @@ app.get('/', (req, res) => {
 		config
 	})
 });
+
+app.use(express.static(__dirname + '/public'));
 
 app.post('/submitMeet', (req, res) => {
 	let uid = shortid.generate()

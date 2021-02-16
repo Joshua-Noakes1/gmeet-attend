@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "nodemon app.js --ignore *.json",
     "start": "node app.js"
   },
   "keywords": [],
