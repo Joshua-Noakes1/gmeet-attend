@@ -1,12 +1,13 @@
-const express = require('express')
+const express = require('express');
+const morgan = require('morgan');
 const path = require('path');
 const Gmeet = require('./lib/Gmeet');
 const rw = require('./lib/rw');
 const bodyParser = require('body-parser');
 const shortid = require('shortid');
 require('dotenv').config();
-const app = express()
-const gmeet = new Gmeet()
+const app = express();
+const gmeet = new Gmeet();
 
 const HEADLESS = false //Change this to true if you dont want the chrome UI to show up
 const VERBOSE = false // Change this to true to get extra messages in the console
@@ -32,9 +33,11 @@ let config = {
 app.use(bodyParser.urlencoded({
 	extended: false
 }))
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // app.use(bodyParser.json())
+app.use(morgan('dev'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -46,7 +49,7 @@ app.get('/', (req, res) => {
 	})
 });
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public')); // local css 
 
 app.post('/submitMeet', (req, res) => {
 	let uid = shortid.generate()
@@ -79,7 +82,7 @@ app.post('/settings', (req, res) => {
 const checkForMeeting = () => {
 	for (meeting in meetings) {
 		if (Date.now() > meetings[meeting].time) {
-			gmeet.join(meetings[meeting].url, config['email'], appconfig.password, meetings[meeting].obs, obs_config, meetings[meeting].name, {
+			gmeet.join(meetings[meeting].url, config['email'], appconfig.password, meetings[meeting].obs, obs_config, meetings[meeting].name, meetings[meeting].camera, {
 				headless: HEADLESS,
 				verbose: VERBOSE
 			})
