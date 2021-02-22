@@ -119,4 +119,3 @@ dist
 appconfig.json
 obs.json
 package.json.dev
-lib/check.js
