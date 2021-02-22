@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 #### Code
 - Added proper error handling for functions that could crash the browser
+- Added Changelog Shield on the readme
 #### Files
 - lib/meet/record-meet.js
 - lib/meet/stop-meet.js
@@ -15,12 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 #### Code
 - Moved the main google meet code from `Gmeet-Login.js` to `Gmeet.js`
-- Changed `app.js` to use `Gmeet.js` to `Gmeet-Login.js`
+- Changed `app.js` to use `Gmeet-Login.js` instead of  `Gmeet.js`
 #### Files
 - lib/obs/obs.js
 - lib/Gmeet.js
-- app.js
 - public/css/index.css
+- app.js
+- [README.md](https://github.com/Joshua-Noakes1/gmeet-attend/blob/master/README.md)
 ### Removed 
 #### Code
 - Dark mode support 
